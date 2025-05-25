@@ -7,6 +7,20 @@ window.addEventListener('DOMContentLoaded', () => {
     const nome = document.getElementById('nome').value;
     const telefonePrincipal = document.getElementById('telefonePrincipal').value;
     const telefoneSecundario = document.getElementById('telefoneSecundario').value;
+    
+    const numeros = obterNumeros();
+    const nomeJaExiste = numeros.some(item => item.nome.toLowerCase() === nome.toLowerCase());
+    if (nomeJaExiste) {
+      alert('Este nome já está cadastrado!');
+      return;
+    }
+
+    const telPrincipalNumeros = telefonePrincipal.replace(/\D/g, '');
+    const telSecundarioNumeros = telefoneSecundario.replace(/\D/g, '');
+    if (telPrincipalNumeros.length !== 11 || telSecundarioNumeros.length !== 11) {
+      alert('Os telefones devem conter exatamente 11 dígitos!');
+      return;
+    }
 
     if (nome && telefonePrincipal && telefoneSecundario) {
       const numeros = obterNumeros();
